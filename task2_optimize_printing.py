@@ -59,7 +59,6 @@ def optimize_printing(print_jobs: List[Dict], constraints: Dict) -> Dict:
 
         jobs.append(job)
 
-    # Жадібно: вищий пріоритет раніше; однаковий пріоритет — зберігаємо вхідний порядок
     jobs_sorted = sorted(jobs, key=lambda x: x.priority)
 
     print_order: List[str] = []
@@ -95,7 +94,6 @@ def optimize_printing(print_jobs: List[Dict], constraints: Dict) -> Dict:
             current_max_time = max(current_max_time, job.print_time)
             print_order.append(job.id)
         else:
-            # закриваємо поточну групу і починаємо нову
             close_group()
             current_group.append(job)
             current_volume = job.volume
